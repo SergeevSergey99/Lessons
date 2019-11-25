@@ -1,4 +1,4 @@
-#include <cmath>
+/*#include <cmath>
 #include <iostream>
 
 int rec_fact(int x)
@@ -25,4 +25,4 @@ int main()
 	std::cout << std::endl << rec_fact(a);
 	
 	return 0;
-}
+}*/
