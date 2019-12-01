@@ -1,4 +1,4 @@
-#include <iostream>
+/*#include <iostream>
 
 using namespace std;
 
@@ -14,7 +14,9 @@ int main()
 	{
 		if(str[i] != str[n - 1 - i])
 		{
+			cout << str[i] << " " << str[n - 1 - i] << endl;
 			cout << "Строка не является палиндромом";
+
 			return 0;
 		}
 	}
@@ -23,3 +25,4 @@ int main()
 
 	return 0;
 }
+*/
