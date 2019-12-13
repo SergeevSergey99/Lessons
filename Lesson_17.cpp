@@ -1,4 +1,4 @@
-/*#include <iostream>
+#include <iostream>
 #include <conio.h>
 #include <windows.h>
 #define X 20
@@ -99,4 +99,4 @@ int main()
 		Sleep(250);
 	}
 	return 0;
-}*/
+}
