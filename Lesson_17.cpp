@@ -1,13 +1,13 @@
 #include <iostream>
-#include <conio.h>
 #include <windows.h>
-#define X 20
-#define Y 10
+#define X 32
+#define Y 16
 
 using namespace std;
 
 char lifenow[X][Y] = {};
 char lifenext[X][Y] = {};
+
 void Draw()
 {
 	system("cls");
@@ -15,40 +15,33 @@ void Draw()
 	{
 		for (int j = 0; j < X; j++)
 		{
-			cout << lifenow[j][i];
+			printf("%c", lifenow[j][i]);
+//			cout << lifenow[j][i];
 		}
-		cout << endl;
+		printf("\n");
+//		cout << endl;
 	}
 }
 void Fill()
 {
-	srand(unsigned(0));
-
-	
 	for (int i = 0; i < Y; i++)
 	{
 		for (int j = 0; j < X; j++)
 		{
-			lifenow[j][i] = ((rand() % 3 == 0)?'o':0);
+			lifenow[j][i] = ((rand() % 3 == 0)?'O':0);
 		}
 	}
 }
-bool Keys() 
-{
-	unsigned char button;
-	if (_kbhit())
-	{
-		button = _getch();
-		switch (button) 
-		{
-			case 27: return true;
-				break;
-		}
-	}
+bool Keys()
+{	
+	if (GetKeyState(27) >> 7)
+		return true;
+	if (GetKeyState(' ') >> 7)
+		Fill();
 	return false;
 
 }
-int countOfOther(int i, int j) 
+int countOfOther(int i, int j)
 {
 	int cnt = 0;
 	//if (lifenow[(i) % X][(j) % Y] != 0) cnt++;
@@ -72,7 +65,7 @@ void Swap()
 		}
 	}
 }
-void Update() 
+void Update()
 {
 	for (int i = 0; i < Y; i++)
 	{
@@ -80,15 +73,16 @@ void Update()
 		{
 			int cnt = countOfOther(j, i);
 			if (cnt < 2 || cnt > 3) lifenext[j][i] = 0;
-			if (lifenow[j][i] == 'o' && cnt == 3) lifenext[j][i] = 'o';
-			if (lifenow[j][i] == 0 && (cnt == 3 || cnt == 2)) lifenext[j][i] = 'o';
+			if (lifenow[j][i] == 0 && cnt == 3) lifenext[j][i] = 'O';
+			if (lifenow[j][i] == 'O' && (cnt == 3 || cnt == 2)) lifenext[j][i] = 'O';
 		}
-		
+
 	}
 	Swap();
 }
 int main()
 {
+	srand(unsigned(0));
 
 	while (true)
 	{
@@ -96,7 +90,7 @@ int main()
 			break;
 		Update();
 		Draw();
-		Sleep(250);
+		Sleep(80);
 	}
 	return 0;
 }
