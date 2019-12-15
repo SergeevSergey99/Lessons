@@ -1,4 +1,4 @@
-#include <iostream>
+/*#include <iostream>
 #include <windows.h>
 #define X 32
 #define Y 16
@@ -93,4 +93,4 @@ int main()
 		Sleep(80);
 	}
 	return 0;
-}
+}*/
