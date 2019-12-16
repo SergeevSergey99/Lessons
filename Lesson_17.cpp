@@ -1,27 +1,32 @@
 /*#include <iostream>
+//Необходимо для новых команд
 #include <windows.h>
-#define X 32
-#define Y 16
-
 using namespace std;
-
+//колличество элементов по горизонтали
+#define X 32
+//колличество элементов по вертикали
+#define Y 16
+// Массив элементов одного кадра
 char lifenow[X][Y] = {};
-char lifenext[X][Y] = {};
 
 void Draw()
 {
+	// Очистка экрана
 	system("cls");
+	//Построчный вывод слоев кадра
 	for (int i = 0; i < Y; i++)
 	{
+		//Посимвольный вывод одного  слоя кадра
 		for (int j = 0; j < X; j++)
 		{
-			printf("%c", lifenow[j][i]);
-//			cout << lifenow[j][i];
+			cout << lifenow[j][i];
 		}
-		printf("\n");
-//		cout << endl;
+		// Перевод на новую строку
+		// Чтобы не вывести кадр одной строчкой
+		cout << endl;
 	}
 }
+char lifenext[X][Y] = {};
 void Fill()
 {
 	for (int i = 0; i < Y; i++)
@@ -34,12 +39,15 @@ void Fill()
 }
 bool Keys()
 {	
-	if (GetKeyState(27) >> 7)
-		return true;
+	// Функция GetKeyState дает много информации о клавише
+	// Так как необходимо только узнать, нажата ли она?
+	// Необходимо сделать СДВИГ вправо на 7 символов с помощью >> 
+	if (GetKeyState(27) >> 7) // Если нажата клавиша
+		// с кодом 27 (ESC), то возвращаем ложь 
+		return false;
 	if (GetKeyState(' ') >> 7)
 		Fill();
-	return false;
-
+	return true;
 }
 int countOfOther(int i, int j)
 {
@@ -80,17 +88,21 @@ void Update()
 	}
 	Swap();
 }
+
 int main()
 {
 	srand(unsigned(0));
 
-	while (true)
+	bool GameIsRun = true;
+	while (GameIsRun) // Повтор пока GameIsRun == true
 	{
-		if(Keys())
-			break;
-		Update();
-		Draw();
-		Sleep(80);
+		GameIsRun = Keys(); // Если нажата 
+		// клавиша выхода ESC, то GameIsRun = false
+		Update(); // Подготовка кадра
+		Draw(); // Отрисовка кадра
+		Sleep(60); // Задержка между кадрами
 	}
 	return 0;
-}*/
+}
+
+*/
