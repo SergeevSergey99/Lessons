@@ -1,4 +1,4 @@
-#include<iostream>
+/*#include<iostream>
 #include<windows.h>
 #define X 20
 #define Y 10
@@ -72,4 +72,4 @@ int main()
 	system("pause");
 
 	return 0;
-}
+}*/
