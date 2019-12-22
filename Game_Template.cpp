@@ -38,11 +38,9 @@ bool Keys()
 }
 int main() 
 {
-	bool isWork = true;
 	// Рисуем новые кадры пока не нажмем кнопку выхода
-	while (isWork)
+	while (Keys())
 	{
-		isWork = Keys();
 		// Логика программы
 		Update();
 		// Отрисовка кадра
