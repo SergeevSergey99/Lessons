@@ -51,18 +51,6 @@ void Fill()
 		}
 	}
 }
-/*bool Keys()
-{	
-	// Функция GetKeyState дает много информации о клавише
-	// Так как необходимо только узнать, нажата ли она?
-	// Необходимо сделать СДВИГ вправо на 7 символов с помощью >> 
-	if (GetKeyState(27) >> 7) // Если нажата клавиша
-		// с кодом 27 (ESC), то возвращаем ложь 
-		return false;
-	if (GetKeyState(' ') >> 7)
-		Fill();
-	return true;
-}*/
 int countOfOther(int i, int j)
 {
 	int cnt = 0;
