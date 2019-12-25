@@ -34,11 +34,9 @@ void Draw()
 				rectangle.setFillColor(sf::Color(0, 100, 0));
 			rectangle.setPosition(j * H, i * H);
 			window.draw(rectangle);
-//			cout << lifenow[j][i];
 		}
 		// Перевод на новую строку
 		// Чтобы не вывести кадр одной строчкой
-//		cout << endl;
 	}
 }
 void Fill()
