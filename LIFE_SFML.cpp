@@ -52,7 +52,6 @@ void Fill()
 int countOfOther(int i, int j)
 {
 	int cnt = 0;
-	//if (lifenow[(i) % X][(j) % Y] != 0) cnt++;
 	if (lifenow[(i - 1) % X][(j) % Y] != 0) cnt++;
 	if (lifenow[(i + 1) % X][(j) % Y] != 0) cnt++;
 	if (lifenow[(i) % X][(j - 1) % Y] != 0) cnt++;
