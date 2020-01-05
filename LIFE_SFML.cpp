@@ -19,8 +19,6 @@ sf::RenderWindow window(sf::VideoMode((X * H), (Y * H)), "LIFE");
 
 void Draw()
 {
-	// Очистка экрана
-//	system("cls");
 	//Построчный вывод слоев кадра
 	for (int i = 0; i < Y; i++)
 	{
@@ -35,8 +33,6 @@ void Draw()
 			rectangle.setPosition(j * H, i * H);
 			window.draw(rectangle);
 		}
-		// Перевод на новую строку
-		// Чтобы не вывести кадр одной строчкой
 	}
 }
 void Fill()
