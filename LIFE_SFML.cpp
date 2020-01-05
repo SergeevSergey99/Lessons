@@ -1,9 +1,4 @@
-//#include <iostream>
-//Необходимо для новых команд
-//#include <windows.h>
-
 #include <SFML/Graphics.hpp>
-//using namespace std;
 //колличество элементов по горизонтали
 const unsigned int X = 180;
 //колличество элементов по вертикали
