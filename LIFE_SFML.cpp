@@ -107,15 +107,7 @@ int main()
 		Draw();
 		window.display();
 	}
-	/*bool GameIsRun = true;
-	while (GameIsRun) // Повтор пока GameIsRun == true
-	{
-		GameIsRun = Keys(); // Если нажата 
-		// клавиша выхода ESC, то GameIsRun = false
-		Update(); // Подготовка кадра
-		Draw(); // Отрисовка кадра
-		Sleep(60); // Задержка между кадрами
-	}*/
+	
 	return 0;
 }
 
