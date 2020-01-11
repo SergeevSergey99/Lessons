@@ -1,9 +1,4 @@
-//#include <iostream>
-//Необходимо для новых команд
-//#include <windows.h>
-
 #include <SFML/Graphics.hpp>
-//using namespace std;
 //колличество элементов по горизонтали
 const unsigned int X = 180;
 //колличество элементов по вертикали
@@ -19,8 +14,6 @@ sf::RenderWindow window(sf::VideoMode((X * H), (Y * H)), "LIFE");
 
 void Draw()
 {
-	// Очистка экрана
-//	system("cls");
 	//Построчный вывод слоев кадра
 	for (int i = 0; i < Y; i++)
 	{
@@ -35,8 +28,6 @@ void Draw()
 			rectangle.setPosition(j * H, i * H);
 			window.draw(rectangle);
 		}
-		// Перевод на новую строку
-		// Чтобы не вывести кадр одной строчкой
 	}
 }
 void Fill()
@@ -116,15 +107,7 @@ int main()
 		Draw();
 		window.display();
 	}
-	/*bool GameIsRun = true;
-	while (GameIsRun) // Повтор пока GameIsRun == true
-	{
-		GameIsRun = Keys(); // Если нажата 
-		// клавиша выхода ESC, то GameIsRun = false
-		Update(); // Подготовка кадра
-		Draw(); // Отрисовка кадра
-		Sleep(60); // Задержка между кадрами
-	}*/
+	
 	return 0;
 }
 
