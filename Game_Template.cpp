@@ -1,4 +1,4 @@
-#include<iostream>
+/*#include<iostream>
 #include<windows.h>
 #define X 20
 #define Y 10
@@ -23,9 +23,9 @@ void Draw()
 }
 void Update() 
 {
-	/*
-	* Добавить код логики
-	*/
+	
+	// Добавить код логики
+	
 }
 
 bool Keys() 
@@ -52,4 +52,4 @@ int main()
 	system("pause");
 
 	return 0;
-}
+}*/
