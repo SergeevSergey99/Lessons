@@ -1,4 +1,4 @@
-/*#include <SFML/Graphics.hpp>
+#include <SFML/Graphics.hpp>
 //колличество элементов по горизонтали
 const unsigned int X = 180;
 //колличество элементов по вертикали
@@ -110,5 +110,3 @@ int main()
 	
 	return 0;
 }
-
-*/
