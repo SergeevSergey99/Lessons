@@ -1,4 +1,4 @@
-/*#include <iostream>
+#include <iostream>
 //Необходимо для новых команд
 #include <windows.h>
 using namespace std;
@@ -104,5 +104,3 @@ int main()
 	}
 	return 0;
 }
-
-*/
