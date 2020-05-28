@@ -1,4 +1,4 @@
-/*#include<iostream>
+#include<iostream>
 using namespace std;
 int mas[10000];
 void Bubble_sort(int n)
@@ -40,5 +40,3 @@ int main()
 	Out(n);
 	return 0;
 }
-
-*/
