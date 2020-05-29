@@ -1,5 +1,4 @@
-/*int main()
+int main()
 {
   return 42;
 }
-*/
