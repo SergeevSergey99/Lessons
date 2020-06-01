@@ -1,4 +1,4 @@
-/*#include <iostream>
+#include <iostream>
 using namespace std;
 int main() {
 	short mas[256] = {};
@@ -20,4 +20,3 @@ int main() {
 
 	}
 }
-*/
