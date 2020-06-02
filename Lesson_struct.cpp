@@ -1,4 +1,4 @@
-/*#include <iostream>
+#include <iostream>
 using namespace std;
 struct Student
 {
@@ -8,4 +8,4 @@ struct Student
 int main()
 {
 	return 0;
-}*/
+}
