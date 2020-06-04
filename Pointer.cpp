@@ -1,4 +1,4 @@
-/*#include <iostream>
+#include <iostream>
 using namespace std;
 
 int main() {
@@ -17,4 +17,4 @@ int main() {
 	cout << "Указатель pointer ссылается на адрес: " << pointer << endl;
 	// Вывод значения переменной на адрес который ссылается указатель
 	cout << "Указатель pointer ссылается на переменную со значением: " << *pointer << endl;
-}*/
+}
