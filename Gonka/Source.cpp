@@ -2,7 +2,6 @@
 #include <SFML/Graphics.hpp>
 using namespace std;
 
-
 class Car {
 public:
     string name = "";
@@ -18,7 +17,7 @@ public:
         maxSpeed = 250 + rand() % 151;
         color = sf::Color(rand()%256, rand() % 256, rand() % 256,255);
         string names[4] = {
-                "Феррари", "Ламборгини", "БМВ", "Лада"
+                "Г”ГҐГ°Г°Г Г°ГЁ", "Г‹Г Г¬ГЎГ®Г°ГЈГЁГ­ГЁ", "ГЃГЊГ‚", "Г‹Г Г¤Г "
         };
 
         name = names[rand() % 4];
@@ -48,9 +47,9 @@ public:
         x += speed;
     }
     void print() {
-        cout << "Имя: " << name << endl;
-        cout << "Максимальная скорость: " << maxSpeed << endl;
-        cout << "Ускорение: " << accel << endl << endl;
+        cout << "Г€Г¬Гї: " << name << endl;
+        cout << "ГЊГ ГЄГ±ГЁГ¬Г Г«ГјГ­Г Гї Г±ГЄГ®Г°Г®Г±ГІГј: " << maxSpeed << endl;
+        cout << "Г“Г±ГЄГ®Г°ГҐГ­ГЁГҐ: " << accel << endl << endl;
     }
 };
 
