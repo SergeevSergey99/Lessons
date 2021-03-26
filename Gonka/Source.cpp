@@ -17,7 +17,7 @@ public:
         maxSpeed = 250 + rand() % 151;
         color = sf::Color(rand()%256, rand() % 256, rand() % 256,255);
         string names[4] = {
-                "Ôåððàðè", "Ëàìáîðãèíè", "ÁÌÂ", "Ëàäà"
+                "Феррари", "Ламборгини", "Форд", "Лада"
         };
 
         name = names[rand() % 4];
@@ -47,9 +47,9 @@ public:
         x += speed;
     }
     void print() {
-        cout << "Èìÿ: " << name << endl;
-        cout << "Ìàêñèìàëüíàÿ ñêîðîñòü: " << maxSpeed << endl;
-        cout << "Óñêîðåíèå: " << accel << endl << endl;
+        cout << "Имя: " << name << endl;
+        cout << "Максимальная скорость: " << maxSpeed << endl;
+        cout << "Ускорение: " << accel << endl << endl;
     }
 };
 
