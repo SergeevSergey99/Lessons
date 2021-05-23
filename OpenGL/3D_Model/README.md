@@ -1,0 +1,1 @@
+![alt text](https://github.com/SergeevSergey99/Lessons/blob/master/OpenGL/3D_Model/BMW.png?raw=true)
