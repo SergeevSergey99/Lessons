@@ -18,6 +18,8 @@ vector<string> split(const string& s, char delim) {
     return elems;
 }
 
+int mode = 0;
+int step = 50;
 
 
 struct object
@@ -27,7 +29,7 @@ struct object
         double x;
         double y;
         double z;
-    }; 
+    };
     struct normal
     {
         double x;
@@ -49,6 +51,11 @@ struct object
     vector<point> v;
     vector<normal> vn;
     // faces
+    int my_i_points = 0;
+    int my_i_loop = 0;
+    int my_i_lines = 0;
+    int my_i_blue = 0;
+    int my_i_draw = 0;
     vector<face> f;
     void Load(string fileName)
     {
@@ -67,7 +74,7 @@ struct object
             }
             if (str[0] == 'v' and str[1] == ' ')
             {
-                if(facecnt!=0)
+                if (facecnt != 0)
                 {
                     fs.push_back(facecnt);
                     facecnt = 0;
@@ -119,18 +126,28 @@ struct object
 
 
     }
-    void draw()
+    void draw(int start = 0)
     {
+        if (my_i_draw >= f.size() - step && my_i_draw < f.size())
+            mode++;
+
+        if (my_i_draw < f.size())
+            my_i_draw+=step;
+
+        if (my_i_draw > f.size())
+            my_i_draw = f.size();
+
         glBegin(GL_TRIANGLES);
         srand(0);
         glColor3f(0.0f, 0.0f, 1.0f);
         int findex = 0;
         int cnt = 0;
-        for (int i = 0; i < f.size(); i++)
+        //for (int i = start; i < f.size(); i++)
+        for (int i = start; i < my_i_draw; i++)
         {
-            if(findex < fs.size() and cnt >= fs[findex])
+            if (findex < fs.size() and cnt >= fs[findex])
             {
-                glColor3f(rand()%101 / 100.0f, rand() % 101 / 100.0f, rand() % 101 / 100.0f);
+                glColor3f(rand() % 101 / 100.0f, rand() % 101 / 100.0f, rand() % 101 / 100.0f);
 
                 findex++;
                 cnt = 0;
@@ -164,6 +181,151 @@ struct object
                 v[f[i].vertex_3].z);
         }
         glEnd();
+
+        drawBlue(my_i_draw);
+    }
+    void drawBlue(int start = 0)
+    {
+        if (my_i_blue >= f.size() - step && my_i_blue < f.size())
+            mode++;
+
+        if (my_i_blue < f.size())
+            my_i_blue+= step;
+
+        if (my_i_blue > f.size())
+            my_i_blue = f.size();
+
+        glBegin(GL_TRIANGLES);
+        srand(0);
+        glColor3f(0.0f, 0.0f, 0.0f);
+        int findex = 0;
+        int cnt = 0;
+//        for (int i = start; i < f.size(); i++)
+        for (int i = start; i < my_i_blue; i++)
+        {/*
+            if (findex < fs.size() and cnt >= fs[findex])
+            {
+                /* glColor3f(rand() % 101 / 100.0f, rand() % 101 / 100.0f, rand() % 101 / 100.0f);
+                
+                findex++;
+                cnt = 0;
+            }*/
+            cnt++;
+            glNormal3f(
+                vn[f[i].normal_1].x,
+                vn[f[i].normal_1].y,
+                vn[f[i].normal_1].z);
+            glVertex3f(
+                v[f[i].vertex_1].x,
+                v[f[i].vertex_1].y,
+                v[f[i].vertex_1].z);
+
+            glNormal3f(
+                vn[f[i].normal_2].x,
+                vn[f[i].normal_2].y,
+                vn[f[i].normal_2].z);
+            glVertex3f(
+                v[f[i].vertex_2].x,
+                v[f[i].vertex_2].y,
+                v[f[i].vertex_2].z);
+
+            glNormal3f(
+                vn[f[i].normal_3].x,
+                vn[f[i].normal_3].y,
+                vn[f[i].normal_3].z);
+            glVertex3f(
+                v[f[i].vertex_3].x,
+                v[f[i].vertex_3].y,
+                v[f[i].vertex_3].z);
+        }
+        glEnd();
+        if(my_i_blue < f.size())
+        drawLines(0);
+
+    }    
+    void drawLines(int start = 0)
+    {
+
+        if (my_i_lines >= f.size() - step && my_i_lines < f.size())
+            mode++;
+
+        if (my_i_lines < f.size())
+            my_i_lines+=step;
+        if (my_i_lines > f.size())
+            my_i_lines = f.size();
+
+        //for (int i = 0; i < f.size(); i++)
+        for (int i = start; i < my_i_lines; i++)
+        {
+
+            glBegin(GL_LINE_LOOP);
+        glColor3f(0.0f, 0.0f, 1.0f);
+            glVertex3f(
+                v[f[i].vertex_1].x,
+                v[f[i].vertex_1].y,
+                v[f[i].vertex_1].z);
+
+            glVertex3f(
+                v[f[i].vertex_2].x,
+                v[f[i].vertex_2].y,
+                v[f[i].vertex_2].z);
+
+            glVertex3f(
+                v[f[i].vertex_3].x,
+                v[f[i].vertex_3].y,
+                v[f[i].vertex_3].z);
+        glEnd();
+        }
+        if (my_i_lines < f.size())
+        drawLoop(0);
+    }
+    void drawLoop(int start = 0)
+    {
+
+        if (my_i_loop >= v.size() - step && my_i_loop < v.size())
+            mode++;
+
+        if (my_i_loop < v.size())
+            my_i_loop+=step;
+
+        if (my_i_loop > v.size())
+            my_i_loop = v.size();
+
+        glBegin(GL_LINE_LOOP);
+        glColor3f(0.0f, 0.0f, 1.0f);
+        for (int i = start; i < my_i_loop; i++)
+        {
+            glVertex3f(
+                v[i].x,
+                v[i].y,
+                v[i].z);
+        }
+        glEnd();
+
+        drawPoints(my_i_loop);
+    }
+    void drawPoints(int start = 0)
+    {
+        if (my_i_points >= v.size() - step && my_i_points < v.size())
+            mode++;
+        
+        if(my_i_points < v.size())
+            my_i_points+=step;
+        if (my_i_points > v.size())
+            my_i_points = v.size();
+
+        glBegin(GL_POINTS);
+        glColor3f(0.0f, 0.0f, 1.0f);
+        //for (int i = 0; i < v.size(); i++)
+        for (int i = start; i < my_i_points; i++)
+        {
+            glVertex3f(
+                v[i].x,
+                v[i].y,
+                v[i].z);
+        }
+        
+        glEnd();
     }
 };
 
@@ -172,27 +334,41 @@ struct object
 
 object MyObject;
 int a = 0;
-double x = 0, y = -2.0, z = -16;
+double x = 0, y = -3.0, z = -15;
+double Xposition = 0;
 void Display()
 {
     glClearColor(0.6, 0.6, 0.6, 0);
-    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT); 
- 
+    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+
     glLoadIdentity();
 
+    //gluLookAt(15, 5, 0, 0, 0, 0, -5, 0, 0);
 
     glEnable(GL_LIGHTING);
-    glEnable(GL_LIGHT0);
+    if(mode > 3)glEnable(GL_LIGHT0);
     glEnable(GL_COLOR_MATERIAL);
     glEnable(GL_NORMALIZE);
 
+    //    glPushMatrix();
 
-    glTranslated(x,y,z);
+    glTranslated(x, y, z);
     glRotated(50.0 * a * 0.005, 0, 1, 0);
-   
+    if (mode == 5)
+        Xposition++;
+    glTranslated(Xposition, 0, 0);
+
     a++;
 
-    MyObject.draw();
+    
+    switch (mode) {
+    case 0: MyObject.drawPoints(); break;
+    case 1: MyObject.drawLoop(); break;
+    case 2: MyObject.drawLines(); break;
+    case 3: MyObject.drawBlue(); break;
+    case 4: MyObject.draw(); break;
+    case 5: MyObject.draw(); break;
+    }
 
     glFinish();
     glutSwapBuffers();
@@ -203,6 +379,11 @@ void Keyboard(unsigned char Key, int X, int Y)
 {
     if (Key == 27)
         exit(0);
+    if (Key == '1')mode = 0;
+    if (Key == '2')mode = 1;
+    if (Key == '3')mode = 2;
+    if (Key == '4')mode = 3;
+    if (Key == '5')mode = 4;
     if (Key == 'w')
     {
         z++;
@@ -234,12 +415,18 @@ void Keyboard(unsigned char Key, int X, int Y)
         cout << x << " " << y << " " << z << endl;
     }
     if (Key == ' ')
-    {
+    {/*
         x = 0;
         y = 0;
         z = 0;
 
-        cout << x << " " << y << " " << z << endl;
+        cout << x << " " << y << " " << z << endl;*/
+        mode = 0;
+        MyObject.my_i_blue = 0;
+        MyObject.my_i_draw = 0;
+        MyObject.my_i_loop = 0;
+        MyObject.my_i_lines = 0;
+        MyObject.my_i_points = 0;
     }
 }
 
@@ -247,7 +434,7 @@ void initialize()
 {
     glMatrixMode(GL_PROJECTION);                // set matrix mode
     glLoadIdentity();                           // reset projection matrix
-    GLfloat aspect = (GLfloat)1400.0/ 1000;
+    GLfloat aspect = (GLfloat)1400.0 / 1000;
     gluPerspective(45, aspect, 1.0f, 500.0f);   // set up a perspective projection matrix
     glMatrixMode(GL_MODELVIEW);                 // specify which matrix is the current matrix
     glClearDepth(1.0f);                         // specify the clear value for the depth buffer
@@ -257,22 +444,22 @@ void main(int argc, char* argv[])
 {
     MyObject.Load("BMW_M3_GTR.obj");
 
-    // Èíèöèàëèçàöèÿ
+    // Ð˜Ð½Ð¸Ñ†Ð¸Ð°Ð»Ð¸Ð·Ð°Ñ†Ð¸Ñ
     glutInit(&argc, argv);
     glutInitDisplayMode(GLUT_RGB | GLUT_DOUBLE | GLUT_DEPTH);
-    // ïîëîæåíèå ñîçäàâàåìîãî îêíà îòíîñèòåëüíî âåðõíåãî ëåâîãî óãëà ýêðàíà
+    // Ð¿Ð¾Ð»Ð¾Ð¶ÐµÐ½Ð¸Ðµ ÑÐ¾Ð·Ð´Ð°Ð²Ð°ÐµÐ¼Ð¾Ð³Ð¾ Ð¾ÐºÐ½Ð° Ð¾Ñ‚Ð½Ð¾ÑÐ¸Ñ‚ÐµÐ»ÑŒÐ½Ð¾ Ð²ÐµÑ€Ñ…Ð½ÐµÐ³Ð¾ Ð»ÐµÐ²Ð¾Ð³Ð¾ ÑƒÐ³Ð»Ð° ÑÐºÑ€Ð°Ð½Ð°
     glutInitWindowPosition(0, 0);
-    // Ðàçìåð îêíà
-    glutInitWindowSize(1400, 1000);
-    // Ñîçäàíèå îêíà ñ èìåíåì
+    // Ð Ð°Ð·Ð¼ÐµÑ€ Ð¾ÐºÐ½Ð°
+    glutInitWindowSize(1920, 1080);
+    // Ð¡Ð¾Ð·Ð´Ð°Ð½Ð¸Ðµ Ð¾ÐºÐ½Ð° Ñ Ð¸Ð¼ÐµÐ½ÐµÐ¼
     glutCreateWindow("SERGEEV SERGEY 11-6");
 
-    glutDisplayFunc(Display);       // Çàäàíèå ôóíêöèè îòðèñîâêè
-    glutKeyboardFunc(Keyboard);     // Çàäàíèå ôóíêöèè êëàâèàòóðû
-    
-    glutFullScreen();       // Ïåðåõîä â ïîëíîýêðàííûé ðåæèì
+    glutDisplayFunc(Display);       // Ð—Ð°Ð´Ð°Ð½Ð¸Ðµ Ñ„ÑƒÐ½ÐºÑ†Ð¸Ð¸ Ð¾Ñ‚Ñ€Ð¸ÑÐ¾Ð²ÐºÐ¸
+    glutKeyboardFunc(Keyboard);     // Ð—Ð°Ð´Ð°Ð½Ð¸Ðµ Ñ„ÑƒÐ½ÐºÑ†Ð¸Ð¸ ÐºÐ»Ð°Ð²Ð¸Ð°Ñ‚ÑƒÑ€Ñ‹
 
-    initialize(); // íàñòðîéêè ïðîñòðàíñòâà
+    glutFullScreen();       // ÐŸÐµÑ€ÐµÑ…Ð¾Ð´ Ð² Ð¿Ð¾Ð»Ð½Ð¾ÑÐºÑ€Ð°Ð½Ð½Ñ‹Ð¹ Ñ€ÐµÐ¶Ð¸Ð¼
 
-    glutMainLoop(); // çàïóñê îñíîâíîãî öèêëà
+    initialize(); // Ð½Ð°ÑÑ‚Ñ€Ð¾Ð¹ÐºÐ¸ Ð¿Ñ€Ð¾ÑÑ‚Ñ€Ð°Ð½ÑÑ‚Ð²Ð°
+
+    glutMainLoop(); // Ð·Ð°Ð¿ÑƒÑÐº Ð¾ÑÐ½Ð¾Ð²Ð½Ð¾Ð³Ð¾ Ñ†Ð¸ÐºÐ»Ð°
 }
