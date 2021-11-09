@@ -33,7 +33,8 @@ struct MyVector
 	}
 	void RemoveLast()
 	{
-		size--;
+		if (size > 0)
+			size--;
 	}
 	~MyVector() 
 	{
