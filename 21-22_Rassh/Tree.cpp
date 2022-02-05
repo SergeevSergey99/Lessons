@@ -88,11 +88,13 @@ private
       else if(l == nullptr or r == nullptr){
         if(l == nullptr)
         {
+          curr->right = nullptr;
           delete curr;
           return r;
         }
         else
         {
+          curr->left = nullptr;
           delete curr;
           return l;
         }
