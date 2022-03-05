@@ -50,7 +50,7 @@ void MERGE_SORT(int start, int length)
     
     int i = start;
     int j = start + length / 2;
-        for (int k = 0; k < length; k++)
+        for (int k = start; k < start + length; k++)
     {
         if (j >= start + length or (i < start + length / 2 and mas[i] < mas[j]))
         {
@@ -64,8 +64,8 @@ void MERGE_SORT(int start, int length)
         }
     }
 
-    for (size_t i = 0; i < length; i++)    
-        mas[start + i] = merge_mas[i];
+    for (size_t i = start; i < start + length; i++)    
+        mas[i] = merge_mas[i];
 }
 
 void OUTPUT()
