@@ -1,7 +1,7 @@
 #include <SFML/Graphics.hpp>
 #include <string>
 using namespace sf;
-const int W = 1200;
+const int W = 1400;
 const int H = 800;
 struct item
 {
