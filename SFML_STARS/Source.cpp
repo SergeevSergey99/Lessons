@@ -1,6 +1,6 @@
 #include <SFML/Graphics.hpp>
 using namespace sf;
-const int W = 1000;
+const int W = 1600;
 const int H = 1000;
 float dist = 50;
 float speed = 1;
